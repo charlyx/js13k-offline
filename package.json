@@ -1,0 +1,20 @@
+{
+  "name": "js13k-offline",
+  "version": "0.0.1",
+  "description": "Game for js13K 2018",
+  "main": "dist/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/charlyx/js13k-offline.git"
+  },
+  "author": "ZN",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/charlyx/js13k-offline/issues"
+  },
+  "homepage": "https://github.com/charlyx/js13k-offline#readme"
+}
+
