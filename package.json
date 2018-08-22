@@ -2,9 +2,9 @@
   "name": "js13k-offline",
   "version": "0.0.1",
   "description": "Game for js13K 2018",
-  "main": "dist/index.html",
+  "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "serve"
   },
   "repository": {
     "type": "git",
@@ -15,6 +15,8 @@
   "bugs": {
     "url": "https://github.com/charlyx/js13k-offline/issues"
   },
-  "homepage": "https://github.com/charlyx/js13k-offline#readme"
+  "homepage": "https://github.com/charlyx/js13k-offline#readme",
+  "devDependencies": {
+    "serve": "^9.4.2"
+  }
 }
-
