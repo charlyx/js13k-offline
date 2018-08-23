@@ -14,10 +14,18 @@
         height: 100vh;
         position: relative;
       }
+
+      #gerard {
+        position: absolute;
+        width: 32px;
+        height: 32px;
+        background-color: orange;
+      }
     </style>
   </head>
   <body>
     <div class="scene">
+      <div id="gerard"></div>
     </div>
 
     <script type="module">
@@ -29,18 +37,43 @@
 
       let rotation = 0
 
-      document.addEventListener('keydown', e => {
-        switch(e.key) {
-          case 'ArrowRight':
-            rotation -= 90
-            break;
-          case 'ArrowLeft':
-            rotation += 90
-            break;
-        }
+      let gerard = {
+        direction: {x: 0, y: 0},
+        element: document.getElementById('gerard'),
+      }
 
-        cube.element.style.transform = `rotateY(${rotation}deg)`
+      document.addEventListener('keydown', e => {
+          if (e.key === 'ArrowRight') {
+            gerard.direction.x++
+          }
+          if (e.key === 'ArrowLeft') {
+            gerard.direction.x--
+          }
+          if (e.key === ' ') {
+            // TODO : gérer la hauteur du saut (vélocité)
+            gerard.direction.y--
+          }
+          if (e.key === 'ArrowDown') {
+            gerard.direction.y++
+          }
+          
+          switch(e.key) {
+            case 'j':
+              rotation -= 90
+              break;
+            case 'k':
+              rotation += 90
+              break;
+          }
+
+          cube.element.style.transform = `rotateY(${rotation}deg)`
       })
+
+      setInterval(() => {
+        gerard.element.style.top = `${0 + gerard.direction.y}px`
+        gerard.element.style.left = `${0 + gerard.direction.x}px`
+        // TODO : appliquer la gravité pour faire descendre gérard
+      }, 1000/30)
     </script>
   </body>
 </html>
