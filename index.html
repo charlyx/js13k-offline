@@ -14,51 +14,19 @@
         height: 100vh;
         position: relative;
       }
-
-      .cube {
-        width: 1000px;
-        height: 1000px;
-        position: absolute;
-        bottom: 0;
-        left: calc(50% - 500px);
-        transform-style: preserve-3d;
-        transition: transform 1s;
-      }
-
-      .cube.show-front  { transform: translateZ(-500px) rotateY(   0deg); }
-      .cube.show-right  { transform: translateZ(-500px) rotateY( -90deg); }
-      .cube.show-back   { transform: translateZ(-500px) rotateY(-180deg); }
-      .cube.show-left   { transform: translateZ(-500px) rotateY(  90deg); }
-
-      .cube__face {
-        position: absolute;
-        width: 1000px;
-        height: 1000px;
-      }
-
-      .cube__face--front  { background: hsla(  0, 500%, 50%, 0.7); }
-      .cube__face--right  { background: hsla( 60, 500%, 50%, 0.7); }
-      .cube__face--back   { background: hsla(120, 500%, 50%, 0.7); }
-      .cube__face--left   { background: hsla(180, 500%, 50%, 0.7); }
-
-      .cube__face--front  { transform: rotateY(  0deg) translateZ(500px); }
-      .cube__face--right  { transform: rotateY( 90deg) translateZ(500px); }
-      .cube__face--back   { transform: rotateY(180deg) translateZ(500px); }
-      .cube__face--left   { transform: rotateY(-90deg) translateZ(500px); }
     </style>
   </head>
   <body>
     <div class="scene">
-      <div class="cube">
-        <div class="cube__face cube__face--front"></div>
-        <div class="cube__face cube__face--back"></div>
-        <div class="cube__face cube__face--right"></div>
-        <div class="cube__face cube__face--left"></div>
-      </div>
     </div>
 
-    <script type="text/javascript">
-      const cube = document.querySelector('.cube')
+    <script type="module">
+      import { Cube } from './cube.js'
+
+      const cube = new Cube({ width: 1000, height: 1000 })
+
+      document.querySelector('.scene').appendChild(cube.element)
+
       let rotation = 0
 
       document.addEventListener('keydown', e => {
@@ -71,7 +39,7 @@
             break;
         }
 
-        cube.style.transform = `rotateY(${rotation}deg)`
+        cube.element.style.transform = `rotateY(${rotation}deg)`
       })
     </script>
   </body>
