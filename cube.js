@@ -24,10 +24,10 @@ function makeStyle({ x, y, width, height, color }) {
 
 const template = `
   <div class="cube" id="cube">
-    <div class="cube__face cube__face--front"></div>
-    <div class="cube__face cube__face--back"></div>
-    <div class="cube__face cube__face--right"></div>
-    <div class="cube__face cube__face--left"></div>
+    <div class="cube__face cube__face--front">Front</div>
+    <div class="cube__face cube__face--back">Back</div>
+    <div class="cube__face cube__face--right">Right</div>
+    <div class="cube__face cube__face--left">Left</div>
   </div>
 `
 

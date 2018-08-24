@@ -33,12 +33,15 @@
     <script type="module">
       import { Cube } from './cube.js'
 
-      const tower = new Cube({ width: 1000, height: 1000, y: 0, x: '100px', color: 'transparent' })
-      const platform = new Cube({ width: 100, height: 50, y: '100px', x: '100px', color: 'purple' })
+      const tower = new Cube({ width: 1000, height: 1000, y: 0, x: '100px', color: 'blue' })
+      const platform = new Cube({ width: 100, height: 50, y: '100px', x: '0', color: 'purple' })
 
       document.querySelector('.scene').appendChild(tower.element)
-
-      tower.element.querySelector('.cube__face--front').appendChild(platform.element)
+      document.querySelector('.scene').appendChild(platform.element)
+      platform.element.style.transformOrigin = '600px 500px'
+      tower.element.style.zIndex = '1'
+      platform.element.style.zIndex = '2'
+      platform.element.style.transform = `${platform.element.style.transform} translateZ(1000px)`
 
       let rotation = 0
 
@@ -72,6 +75,7 @@
           }
 
           tower.element.style.transform = `rotateY(${rotation}deg)`
+          platform.element.style.transform = `rotateY(${rotation}deg)`
       })
 
       setInterval(() => {
