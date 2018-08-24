@@ -1,11 +1,11 @@
-function makeStyle({ x, y, width, height }) {
+function makeStyle({ x, y, width, height, color }) {
   return {
     cube: {
       width: `${width}px`,
       height: `${height}px`,
       position: 'absolute',
-      bottom: 0,
-      left: `calc(50% - ${width/2}px)`,
+      bottom: y,
+      left: x,
       transformStyle: 'preserve-3d',
       transition: 'transform 1s',
     },
@@ -13,11 +13,12 @@ function makeStyle({ x, y, width, height }) {
       position: 'absolute',
       width: `${width}px`,
       height: `${height}px`,
+      border: '1px solid black',
     },
-    ['cube__face--front']: { background: 'red', transform: `rotateY(0deg) translateZ(${width / 2}px)` },
-    ['cube__face--right']: { background: 'yellow', transform: `rotateY(90deg) translateZ(${width / 2}px)` },
-    ['cube__face--back']: { background: 'green', transform: `rotateY(180deg) translateZ(${width / 2}px)` },
-    ['cube__face--left']: { background: 'blue', transform: `rotateY(-90deg) translateZ(${width / 2}px)` },
+    ['cube__face--front']: { background: color, transform: `rotateY(0deg) translateZ(${width / 2}px)` },
+    ['cube__face--right']: { background: color, transform: `rotateY(90deg) translateZ(${width / 2}px)` },
+    ['cube__face--back']: { background: color, transform: `rotateY(180deg) translateZ(${width / 2}px)` },
+    ['cube__face--left']: { background: color, transform: `rotateY(-90deg) translateZ(${width / 2}px)` },
   }
 }
 
