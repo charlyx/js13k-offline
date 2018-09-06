@@ -4,7 +4,8 @@
   "description": "Game for js13K 2018",
   "main": "index.html",
   "scripts": {
-    "start": "serve"
+    "start": "serve",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,13 @@
   },
   "homepage": "https://github.com/charlyx/js13k-offline#readme",
   "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "babel-core": "^7.0.0-0",
+    "babel-jest": "^23.4.2",
     "serve": "^9.4.2"
+  },
+  "dependencies": {
+    "jest": "^23.5.0"
   }
 }

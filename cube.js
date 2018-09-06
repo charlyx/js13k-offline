@@ -61,7 +61,76 @@ function stylize(element, pStyle) {
 
 export class Cube {
   constructor(options) {
+    this.options = options
+    this.rotation = 0
+    this.currentFace = 0
+    this.children = []
+
     this.element = createElement(template)
     stylize(this.element, makeStyle(options))
+
+    this.element.style.zIndex = this.options.zIndex
+  }
+
+  attachTo(child, face) {
+    child.face = face
+    this.children.push(child)
+
+    const { x, width, zIndex } = this.options
+
+    child.element.style.zIndex = zIndex - 1
+    child.element.style.transformOrigin = `${(parseInt(x) + parseInt(width)) / 2}px center`
+  }
+
+  rotateRight() {
+    this.previousHiddenFace = this.getHiddenFace()
+    if (this.currentFace === 0) {
+      this.currentFace = 4
+    }
+    this.currentFace -= 1
+    this.rotation += 90
+    this.rotate()
+  }
+
+  rotateLeft() {
+    this.previousHiddenFace = this.getHiddenFace()
+    if(this.currentFace === 3) {
+      this.currentFace = 0
+    } else {
+      this.currentFace += 1
+    }
+    this.rotation -= 90
+    this.rotate()
+  }
+
+  rotate() {
+    this.element.style.transform = `rotateY(${this.rotation}deg)`
+
+    this.children.forEach(child => {
+      child.element.style.transform = `rotateY(${this.rotation}deg)`
+
+      if(this.isChildHidden(child)) {
+        child.element.style.transition = 'transform 1s, zIndex 1s'
+      } else {
+        child.element.style.transition = 'transform 1s'
+      }
+
+      if(this.isChildHidden(child)) {
+        child.element.style.zIndex = this.options.zIndex - 1
+      } else {
+        child.element.style.zIndex = this.options.zIndex + 1
+      }
+    })
+  }
+
+  getHiddenFace() {
+    if (this.currentFace === 0) return 2
+    if (this.currentFace === 3) return 1
+    if (this.currentFace === 2) return 0
+    return 3
+  }
+
+  isChildHidden({ face }) {
+    return face === this.getHiddenFace() || face === this.previousHiddenFace
   }
 }
