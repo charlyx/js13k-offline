@@ -22,6 +22,7 @@
         width: 32px;
         height: 32px;
         background-color: orange;
+        z-index: 3;
       }
     </style>
   </head>
@@ -45,26 +46,7 @@
 
       let rotation = 0
 
-      let gerard = {
-        direction: {x: 0, y: 0},
-        element: document.getElementById('gerard'),
-      }
-
       document.addEventListener('keydown', e => {
-          if (e.key === 'ArrowRight') {
-            gerard.direction.x++
-          }
-          if (e.key === 'ArrowLeft') {
-            gerard.direction.x--
-          }
-          if (e.key === ' ') {
-            // TODO : gérer la hauteur du saut (vélocité)
-            gerard.direction.y--
-          }
-          if (e.key === 'ArrowDown') {
-            gerard.direction.y++
-          }
-
           switch(e.key) {
             case 'j':
               rotation -= 90
@@ -78,11 +60,14 @@
           platform.element.style.transform = `rotateY(${rotation}deg)`
       })
 
+      import { Player } from './player.js'
+
+      const gerard = new Player()
+      const refreshRate = 1000/60
+
       setInterval(() => {
-        gerard.element.style.top = `${0 + gerard.direction.y}px`
-        gerard.element.style.left = `${0 + gerard.direction.x}px`
-        // TODO : appliquer la gravité pour faire descendre gérard
-      }, 1000/30)
+        gerard.move(refreshRate)
+      }, refreshRate)
     </script>
   </body>
 </html>
